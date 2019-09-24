@@ -1,0 +1,128 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'core/images/bg-01.jpg' %}');">
+		<h2 class="ltext-105 cl0 txt-center">
+			Contact
+		</h2>
+	</section>	
+	
+
+	<!-- Content page -->
+	<section class="bg0 p-t-104 p-b-116">
+		
+		<div class="container con">
+			<div class="row">
+				<div class"col-md-12">
+
+				</div>
+			</div>
+			<div class="row">
+				
+					<div class="col-md-5 info">
+						<h2 class="txt-center p-t-40  p-b-40 p-lr-30">INFORMACIÓN DE CONTACTO</h2>
+						{% for info  in info  %}
+							<div class="flex-w p-b-22 ">
+								<span class="fs-18 cl5 txt-center size-211">
+									<span class="lnr lnr-map-marker"></span>
+								</span>
+
+								<div class="size-212 p-t-2">
+									<span class="mtext-110 cl6">
+										Address
+									</span>
+
+									<p class="stext-115 cl0 size-213 p-t-5">
+										{{info.address}}
+									</p>
+								</div>
+							</div>
+
+							<div class="flex-w w-full p-b-22">
+								<span class="fs-18 cl5 txt-center size-211">
+									<span class="lnr lnr-phone-handset"></span>
+								</span>
+
+								<div class="size-212 p-t-2">
+									<span class="mtext-110 cl6">
+										Lets Talk
+									</span>
+
+									<p class="stext-115 cl0 size-213 p-t-5">
+										{{info.phone}}
+									</p>
+								</div>
+							</div>
+
+							<div class="flex-w w-full p-b-30">
+								<span class="fs-18 cl5 txt-center size-211">
+									<span class="lnr lnr-envelope"></span>
+								</span>
+
+								<div class="size-212 p-t-2 p-b-30">
+									<span class="mtext-110 cl6">
+										Sale Support
+									</span>
+
+									<p class="stext-115 cl0 size-213 p-t-5">
+										{{info.email}}
+									</p>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					
+					<div class="col-md-7 formu">
+							<form method="post" class="p-t-40 p-l-60 p-r-60 p-b-40">
+							{% csrf_token %}
+								<h4 class="mtext-105 cl2 txt-center p-b-30">
+									Send Us A Message
+								</h4>
+
+								<div class="bor8 m-b-20 how-pos4-parent">
+									{{ form.name }}
+									<img class="how-pos4 pointer-none" src="{% static 'core/images/icons/user.png' %}" alt="ICON">
+								</div>
+
+								<div class="bor8 m-b-20 how-pos4-parent">
+									{{ form.email }}
+									<img class="how-pos4 pointer-none" src="{% static 'core/images/icons/icon-email.png' %}" alt="ICON">
+								</div>
+
+								<div class="bor8 m-b-30">
+									{{ form.message }} 	
+								</div>
+
+								<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer ">
+									Submit
+								</button>
+							</form>	
+					</div>
+					
+
+			</div>
+		</div>
+
+		<!--<div class="container">
+			<div class="flex-w flex-tr">
+			{% if messages %}
+				<div class="row">
+					<div class="col-md-12">
+					{% for message in messages %}
+						<div {% if message.tags == "success" %} class="alert alert-success"{% endif %}>
+							{{ message }}
+						</div>
+					{% endfor %}
+					</div>
+				</div>	
+			{% endif %}
+			</div>
+			
+		</div>-->
+	</section>	
+	
+
+{% endblock %}
+

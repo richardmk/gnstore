@@ -1,0 +1,35 @@
+.container.c{
+    max-width:  1050px;
+}
+
+.container.con{
+    max-width:  900px;
+}
+
+form.form-des{
+    width: 100%;
+}
+
+section .info{
+    background-color: #222;
+    color:#fff;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+section .formu form{
+    border: 1px solid#222;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+section .info[class*="col-"] {
+    padding: 0;
+}
+section .formu[class*="col-"] {
+    padding: 0;
+}
+
+section form textarea{
+    height: 120px;
+}
