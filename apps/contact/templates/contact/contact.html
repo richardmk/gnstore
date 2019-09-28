@@ -1,15 +1,15 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% block title %}Contact |{% endblock  %}
+
 {% block content %}
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{% static 'core/images/bg-01.jpg' %}');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({% static 'core/images/bg-01.jpg' %});">
 		<h2 class="ltext-105 cl0 txt-center">
 			Contact
 		</h2>
 	</section>	
-	
-
 	<!-- Content page -->
 	<section class="bg0 p-t-104 p-b-116">
 		
@@ -105,22 +105,6 @@
 			</div>
 		</div>
 
-		<!--<div class="container">
-			<div class="flex-w flex-tr">
-			{% if messages %}
-				<div class="row">
-					<div class="col-md-12">
-					{% for message in messages %}
-						<div {% if message.tags == "success" %} class="alert alert-success"{% endif %}>
-							{{ message }}
-						</div>
-					{% endfor %}
-					</div>
-				</div>	
-			{% endif %}
-			</div>
-			
-		</div>-->
 	</section>	
 	
 

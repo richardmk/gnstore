@@ -22,6 +22,7 @@ from apps.core import views
 from apps.blog import views
 from apps.contact import views 
 from apps.about import views
+from apps.shop import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('blog/', include('apps.blog.urls')),
     path('contact/', include('apps.contact.urls')),
     path('about/', include('apps.about.urls')),
+    path('shop/',include('apps.shop.urls')),
 ]
 
 if settings.DEBUG:

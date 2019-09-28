@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
+from .views import * #otra manera de llamar a las rutas
 
 urlpatterns = [
-    path('', views.blog, name = 'blog'),
-    #path('detail/', views.blog_detail, name = 'blog_detail'),
+    path('', blog, name = 'blog'),
+    path('<slug:slug>/', detail_post, name = 'detail_post'),
 ]
