@@ -33,6 +33,7 @@ class Product(BaseModel):
     stock = models.SmallIntegerField('Stock')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     sex = models.ForeignKey(Sex, on_delete=models.CASCADE)
+    promotion = models.BooleanField('Promotion',default=False)
 
     class Meta:
         verbose_name = 'Product'

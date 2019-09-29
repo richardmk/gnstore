@@ -12,6 +12,9 @@ def shop(request):
 
 def getproduct():
     return Product.objects.all()
-    
+
 def getsex():
     return Sex.objects.all()
+
+def get_product_prom():
+    return Product.objects.filter(promotion=True)[:3]#indica solo los 3 primeros elementos de la lista

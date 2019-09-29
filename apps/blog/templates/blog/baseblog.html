@@ -27,11 +27,14 @@
 				<div class="col-md-3 col-lg-3 p-b-80">
 					<div class="side-menu">
 						<div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
+						<form method="get">
+							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search Post">
 
-							<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-								<i class="zmdi zmdi-search"></i>
-							</button>
+								<button type="submit" class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
+									<i class="zmdi zmdi-search"></i>
+								</button>
+						</form>
+							
 						</div>
 
 						<div class="p-t-45">
@@ -57,7 +60,7 @@
 							</h4>
 
 							<ul>
-                            {% for pro in pro  %}
+                            {% for pro in get_product_prom  %}
                             	<li class="flex-w flex-t p-b-30">
 									<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
 										<img src="{{pro.image.url}}" alt="PRODUCT"  width="90" >
