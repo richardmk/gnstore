@@ -5,16 +5,23 @@ from apps.about.views import getinfo
 from apps.shop.views import get_product_prom
 from django.db.models import Q
 
+from django.db.models import Count, DateField
+from django.db.models.functions import TruncMonth
+from django.core.paginator import Paginator
 
 
-    
 def blog(request):
     queryset = request.GET.get("search")
 
     post = Post.objects.filter(state=True)
     category = Category.objects.all()
     pro = Product.objects.all()
-    
+
+    per_month = Post.objects.annotate(month=TruncMonth('created', output_field=DateField())).values('month').annotate(experiments=Count('created'))
+    #for exp in per_month:
+    #    print(exp['month'], exp['experiments'])
+    #print(per_month)    
+
     if queryset:
         post = Post.objects.filter(
             Q(title__icontains=queryset) | #realizar busqueda como like %%
@@ -23,12 +30,17 @@ def blog(request):
             Q(category__name__icontains=queryset) 
         ).distinct()
 
+    paginator = Paginator(post,3)
+    pag = request.GET.get('page')
+    post = paginator.get_page(pag)
+
     context = {
         'post':post,
         'category':category,
         'info':getinfo(),
         'pro':pro,
-        'get_product_prom':get_product_prom()
+        'get_product_prom':get_product_prom(),
+        'per_month':per_month
     }
    
     return render(request, 'blog/blog.html',context)
@@ -44,6 +56,8 @@ def detail_post(request,slug):
     d_post = Post.objects.get(slug=slug)
     category = Category.objects.all()
     pro = Product.objects.all()
+
+    per_month = Post.objects.annotate(month=TruncMonth('created', output_field=DateField())).values('month').annotate(experiments=Count('created'))
      
     if queryset:
         post = Post.objects.filter(
@@ -56,7 +70,8 @@ def detail_post(request,slug):
             'post':post,
             'category':category,
             'pro':pro,
-            'get_product_prom':get_product_prom()
+            'get_product_prom':get_product_prom(),
+            'per_month':per_month
         }
         return render(request,'blog/blog.html',context)
     
@@ -64,7 +79,8 @@ def detail_post(request,slug):
         'd_post':d_post,
         'category':category,
         'pro':pro,
-        'get_product_prom':get_product_prom()
+        'get_product_prom':get_product_prom(),
+        'per_month':per_month
     }
     return render(request, 'blog/detail_post.html',context)
 

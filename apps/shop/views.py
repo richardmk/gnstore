@@ -4,9 +4,11 @@ from .models import *
 # Create your views here.
 def shop(request):
     product = Product.objects.all()
+    category = Category.objects.all()
     context = {
         'info':getinfo(),
-        'product':product
+        'product':product,
+        'category':category
     }
     return render(request,'shop/shop.html',context)
 

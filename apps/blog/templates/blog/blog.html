@@ -61,21 +61,20 @@
 								</div>
 							{% endfor %}
 								<!-- Pagination -->
-							<div class="flex-l-m flex-w w-full p-t-10 m-lr-7 justify-content-center">
-								<a href="#" class="flex-c-m how-pagination1 trans-04 ">
-									<<
-								</a>
-								<a href="#" class="flex-c-m how-pagination1 trans-04  active-pagination1">
-									1
-								</a>
-
-								<a href="#" class="flex-c-m how-pagination1 trans-04 ">
-									2
-								</a>
+							<div class="flex-l-m flex-w w-full p-t-10 m-lr-7 justify-content-center">		
 								
-								<a href="#" class="flex-c-m how-pagination1 trans-04 ">
-									>>
-								</a>
+									{% if post.has_previous %}
+										<!--<a href="?page=1" class="flex-c-m how-pagination1 trans-04">&laquo; first</a>-->
+										<a href="?page={{ post.previous_page_number }}{% if request.GET.search %} &q={{request.GET.search}} {% endif %}" class="flex-c-m how-pagination2 trans-04 p-lr-3 p-tb-3 m-lr-3">prev</a>
+									{% endif %}
+										{% for num in post.paginator.page_range %}
+										<a href="?page={{num}}" class="flex-c-m how-pagination1 trans-04 p-lr-3 p-tb-3 m-lr-3 {% if post.number == num %}active-pagination1{% endif %}">{{num}}</a>
+										{% endfor %}
+									{% if post.has_next %}
+										<a href="?page={{ post.next_page_number }}{% if request.GET.search %} &q={{request.GET.search}} {% endif %} " class="flex-c-m how-pagination2 trans-04 p-lr-3 p-tb-3 m-lr-3">next</a>
+										<!--<a href="?page={{ post.paginator.num_pages }}" class="flex-c-m how-pagination1 trans-04" >last &raquo;</a>-->
+									{% endif %}
+								
 							</div>
 						
 						{% else %}
